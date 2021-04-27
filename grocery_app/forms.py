@@ -5,10 +5,11 @@ from wtforms import (
     SelectField,
     SubmitField,
     FloatField,
+    PasswordField
 )
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, Length, URL, NumberRange
-from grocery_app.models import GroceryStore
+from grocery_app.models import GroceryStore, User
 
 
 class GroceryStoreForm(FlaskForm):
