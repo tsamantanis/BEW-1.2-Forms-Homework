@@ -11,7 +11,8 @@
 
     <p><strong>Store:</strong> {{ item.store.title }}</p>
 
-
+    <p><strong>Created By:</strong> {{ current_user.username }}</p>
+    
     <h2>Edit Item</h2>
 
     {% include 'item_form.html' %}
