@@ -39,6 +39,18 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(80), nullable = False, unique = True)
     password = db.Column(db.String(120), nullable = False)
+    shopping_list_items = db.relationship(
+        "GroceryItem",
+        secondary = "shopping_list_table",
+        back_populates = "users_shopping_list",
+    )
 
     def __repr__(self):
         return f"<User: {self.username}>"
+
+
+shopping_list_table = db.Table(
+    "shopping_list_table",
+    db.Column("user_id", db.Integer, db.ForeignKey("user.id")),
+    db.Column("grocery_item_id", db.Integer, db.ForeignKey("grocery_item.id")),
+)
