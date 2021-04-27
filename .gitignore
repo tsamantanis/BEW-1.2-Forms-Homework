@@ -151,3 +151,6 @@ dmypy.json
 
 .DS_STORE
 
+# VSCode
+
+.vscode/
