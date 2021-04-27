@@ -1,34 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>New Store</h1>
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        <fieldset>
-            <legend>Please enter your information:</legend>
-            {{ form.title.label }}
-            {% if form.title.errors %}
-                {{ form.title(class="is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.title.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% else %}
-                {{ form.title }}
-            {% endif %}
-            {{ form.address.label }}
-            {% if form.address.errors %}
-                {{ form.address(class="is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.address.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% else %}
-                {{ form.address }}
-            {% endif %}
-        </fieldset>
-        {{ form.submit }}
-    </form>
+    {% include 'store_form.html' %}
 
 {% endblock %}
