@@ -91,9 +91,27 @@ def item_detail(item_id):
     item = GroceryItem.query.get(item_id)
     return render_template("item_detail.html", item = item, form = form)
 
+@main.route("/add_to_shopping_list/<item_id>", methods=["POST"])
+@login_required
+def add_to_shopping_list(item_id):
+    """Adds an item to the user's shopping list"""
+    item = GroceryItem.query.get(item_id)
+    current_user.shopping_list_items.append(item)
+    db.session.add(current_user)
+    db.session.commit()
+    shopping_list_items = current_user.shopping_list_items
+    return render_template("shoppinglist.html", shopping_list_items=shopping_list_items)
+
+
+@main.route("/shopping_list")
+@login_required
+def shopping_list():
+    """Returns current user's shopping list"""
+    shopping_list_items = current_user.shopping_list_items
+    return render_template("shoppinglist.html", shopping_list_items=shopping_list_items)
+
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
-    print('in signup')
     form = SignUpForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
