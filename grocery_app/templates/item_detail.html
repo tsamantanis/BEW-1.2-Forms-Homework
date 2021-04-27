@@ -14,67 +14,7 @@
 
     <h2>Edit Item</h2>
 
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        <fieldset>
-            <legend>Please enter your information:</legend>
-            {{ form.name.label }}
-            {% if form.name.errors %}
-                {{ form.name(class="is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.name.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% else %}
-                {{ form.name }}
-            {% endif %}
-            {{ form.price.label }}
-            {% if form.price.errors %}
-                {{ form.price(class="is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.price.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% else %}
-                {{ form.price }}
-            {% endif %}
-            {{ form.category.label }}
-            {% if form.category.errors %}
-                {{ form.category(class="is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.category.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% else %}
-                {{ form.category }}
-            {% endif %}
-            {{ form.photo_url.label }}
-            {% if form.photo_url.errors %}
-                {{ form.photo_url(class="is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.photo_url.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% else %}
-                {{ form.photo_url }}
-            {% endif %}
-            {{ form.store.label }}
-            {% if form.store.errors %}
-                {{ form.store(class="is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.store.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% else %}
-                {{ form.store }}
-            {% endif %}
-        </fieldset>
-        {{ form.submit }}
-    </form>
+    {% include 'item_form.html' %}
+
 
 {% endblock %}
