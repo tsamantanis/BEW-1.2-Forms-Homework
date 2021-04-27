@@ -27,3 +27,24 @@ class GroceryItemForm(FlaskForm):
     photo_url = StringField("Photo Url", validators=[DataRequired(), URL()])
     store = QuerySelectField("Store", query_factory = lambda: GroceryStore.query, allow_blank = False)
     submit = SubmitField("Submit")
+
+
+class SignUpForm(FlaskForm):
+    """Form for adding a Users."""
+
+    username = StringField('User Name',
+        validators=[DataRequired(), Length(min = 3, max = 50)])
+    password = PasswordField('Password', validators = [DataRequired()])
+    submit = SubmitField('Sign Up')
+
+    def validate_username(self, username):
+        user = User.query.filter_by(username = username.data).first()
+        if user:
+            raise ValidationError('That username is taken. Please choose a different one.')
+
+class LoginForm(FlaskForm):
+    """Form for logging Users in."""
+    username = StringField('User Name',
+        validators = [DataRequired(), Length(min = 3, max = 80)])
+    password = PasswordField('Password', validators = [DataRequired()])
+    submit = SubmitField('Log In')
