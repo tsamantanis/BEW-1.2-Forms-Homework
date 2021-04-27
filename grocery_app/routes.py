@@ -100,7 +100,7 @@ def add_to_shopping_list(item_id):
     db.session.add(current_user)
     db.session.commit()
     shopping_list_items = current_user.shopping_list_items
-    return render_template("shoppinglist.html", shopping_list_items=shopping_list_items)
+    return render_template("shopping_list.html", shopping_list_items=shopping_list_items)
 
 
 @main.route("/shopping_list")
@@ -108,7 +108,7 @@ def add_to_shopping_list(item_id):
 def shopping_list():
     """Returns current user's shopping list"""
     shopping_list_items = current_user.shopping_list_items
-    return render_template("shoppinglist.html", shopping_list_items=shopping_list_items)
+    return render_template("shopping_list.html", shopping_list_items=shopping_list_items)
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():

@@ -12,7 +12,13 @@
     <p><strong>Store:</strong> {{ item.store.title }}</p>
 
     <p><strong>Created By:</strong> {{ current_user.username }}</p>
-    
+
+    {% if current_user.is_authenticated %}
+        <form action="/add_to_shopping_list/{{ item.id }}" method="POST">
+            <input type="submit" value="Add to List">
+        </form>
+    {% endif %} 
+
     <h2>Edit Item</h2>
 
     {% include 'item_form.html' %}

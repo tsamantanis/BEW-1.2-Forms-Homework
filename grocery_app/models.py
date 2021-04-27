@@ -34,6 +34,11 @@ class GroceryItem(db.Model):
     store = db.relationship('GroceryStore', back_populates='items')
     created_by_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     created_by = db.relationship("User")
+    users_shopping_list = db.relationship(
+        "User",
+        secondary="shopping_list_table",
+        back_populates="shopping_list_items",
+    )
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key = True)
